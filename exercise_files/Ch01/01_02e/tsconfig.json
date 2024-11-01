@@ -1,8 +1,8 @@
 {
-    "compilerOptions": {
-        "outDir": "build",
-        "target": "esnext",
-        "noEmit": true
-    },
-    "include": ["src/**/*"]
+  "compilerOptions": {
+    "outDir": "build",
+    "target": "esnext", // tsconfig.json - use esnext for the version of ECMAScript u are using
+    "noEmit": true
+  },
+  "include": ["src/**/*"] // tsconfig.json telling it to compile in which folder
 }
