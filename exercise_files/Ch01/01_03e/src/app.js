@@ -4,6 +4,7 @@
  * @returns
  */
 async function getContact(contactId) {
+  // jquery error
   const resp = await $.ajax({
     url: `/contacts/${contactId}`,
     dataType: "json",
