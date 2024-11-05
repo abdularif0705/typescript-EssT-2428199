@@ -1,3 +1,4 @@
+// This block s is called a JSDoc Syntax, which helps TypeScript infer types without fully converting to TypeScript.
 /**
  * @param makes it see problems because it's not type number if we go change 2 to "2" on line 24 you'll see ts complaining which is what we like to see
  * @param {number} contactId
