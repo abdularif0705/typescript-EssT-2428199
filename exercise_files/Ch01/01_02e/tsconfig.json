@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "build",
-    "target": "esnext", // tsconfig.json - use esnext for the version of ECMAScript u are using
+    "target": "esnext", // tsconfig.json - use esnext for the version of ECMAScript u are using, TypeScript will emit code that is compatible with the latest version of JavaScript.
     "noEmit": true
   },
   "include": ["src/**/*"] // tsconfig.json telling it to compile in which folder
