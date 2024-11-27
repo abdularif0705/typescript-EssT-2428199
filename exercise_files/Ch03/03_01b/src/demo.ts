@@ -12,7 +12,7 @@ type ContactStatus = "active" | "inactive" | "new"; // turned enum into type ali
 
 type ContactBirthDate = Date | number | string; // define diff types it can take
 
-interface Contact extends Address {
+interface Contact {
   id: number;
   name: ContactName;
   birthDate?: ContactBirthDate; // define diff types it can take we could also do
