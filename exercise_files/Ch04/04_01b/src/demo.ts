@@ -1,52 +1,59 @@
-let x: Record<string, string | number | boolean | Function> = { name: "Wruce Bayne" }
-x.number = 1234
-x.active = true
-x.log = () => console.log("awesome!")
-
+let x: Record<string, string | number | boolean | Function> = {
+  name: "Wruce Bayne",
+};
+x.number = 1234;
+x.active = true;
+x.log = () => console.log("awesome!");
 
 ////////////////////
 
 type ContactStatus = "active" | "inactive" | "new";
 
 interface Address {
-    street: string;
-    province: string;
-    postalCode: string;
+  street: string;
+  province: string;
+  postalCode: string;
 }
 
 interface Contact {
-    id: number;
-    name: string;
-    status: ContactStatus;
-    address: Address;
+  id: number;
+  name: string;
+  status: ContactStatus;
+  address: Address;
+  email: string;
 }
 
 interface Query {
-    sort?: 'asc' | 'desc';
-    matches(val): boolean;
+  sort?: "asc" | "desc";
+  matches(val): boolean;
 }
 
-type ContactQuery = Record<keyof Contact, Query>
+type ContactQuery = Partial<Pick<Record<keyof Contact, Query>, "id" | "name">>; // Pick opposite of Omit
+type ContactQuery2 = Omit<Partial<Record<keyof Contact, Query>>, "id" | "name">; // Omit properties id and name
+
+type RequiredContactQuery = Required<ContactQuery>; // Opposite of Partial it's
 
 function searchContacts(contacts: Contact[], query: ContactQuery) {
-    return contacts.filter(contact => {
-        for (const property of Object.keys(contact) as (keyof Contact)[]) {
-            // get the query object for this property
-            const propertyQuery = query[property];
-            // check to see if it matches
-            if (propertyQuery && propertyQuery.matches(contact[property])) {
-                return true;
-            }
-        }
+  return contacts.filter((contact) => {
+    for (const property of Object.keys(contact) as (keyof Contact)[]) {
+      // get the query object for this property
+      const propertyQuery = query[property];
+      // check to see if it matches
+      if (propertyQuery && propertyQuery.matches(contact[property])) {
+        return true;
+      }
+    }
 
-        return false;
-    })
+    return false;
+  });
 }
 
 const filteredContacts = searchContacts(
-    [/* contacts */],
-    {
-        id: { matches: (id) => id === 123 },
-        name: { matches: (name) => name === "Carol Weaver" },
-    }
+  [
+    /* contacts */
+  ],
+  {
+    id: { matches: (id) => id === 123 },
+    name: { matches: (name) => name === "Carol Weaver" },
+  }
 );
