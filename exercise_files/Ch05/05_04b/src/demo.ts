@@ -41,7 +41,7 @@ function freeze(constructor: Function) {
 }
 
 function singleton<T extends { new (...args: any[]): {} }>(constructor: T) {
-  // generic type T that extends a constructor function, he didn't explain (T extends { new (...args: any[]): {} })
+  // Function type doesn't work so we create a generic type T that extends a constructor function, he didn't explain (T extends { new (...args: any[]): {} })
   return class Singleton extends constructor {
     static _instance = null;
 
