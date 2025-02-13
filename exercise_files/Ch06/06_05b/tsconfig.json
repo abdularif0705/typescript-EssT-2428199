@@ -1,9 +1,8 @@
 {
-    "compilerOptions": {
-        "target": "esnext",
-        "outDir": "dist",
-    },
-    "include": [
-        "src/**/*"
-    ]
+  "compilerOptions": {
+    "target": "esnext",
+    "outDir": "dist",
+    "module": "CommonJS" // this is to make the module compatible with Node.js after we do tsc and then node dist/app.js in the 06_5b folder
+  },
+  "include": ["src/**/*"]
 }
